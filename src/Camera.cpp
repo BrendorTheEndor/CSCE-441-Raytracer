@@ -24,10 +24,18 @@ glm::vec3 ComputeRayColor(glm::vec3 rayDirection, float t0, float t1, Scene* sce
 	Record record;
 
 	if(scene->Hit(rayDirection, t0, t1, &record)) {
-
+		// TODO
+		// How do I get these terms I don't have?
+		//glm::vec3 color = record.ka * A;
+		//for(int i = 0; i < scene->GetLights().size(); i++) {
+		//	color += scene->GetLights()[i]->GetColor() * ((record.kd * glm::max(0, glm::dot(Li, N)))
+		//		+ (record.ks * pow(glm::max(0, glm::dot(Ri, E)), n)));
+		//}
+		//return color;
 	}
 	else {
 		// return background color
+		return glm::vec3(0.0f, 0.0f, 0.0f);
 	}
 }
 
@@ -48,7 +56,7 @@ void Camera::TakePicture(Scene* scene) {
 			glm::vec3 Pc = O + ((i + .5f) * Pw * u) + ((j + .5f) * Pw * v); // Is this order right?
 			glm::vec3 rayDirection = glm::normalize(Pc - eye);
 			glm::vec3 colorAtPixel = ComputeRayColor(rayDirection, 0, std::numeric_limits<float>::max(), scene);
-			//renderedImage[i] = 1.0f;
+			// TODO assign this returned color to renderedImage
 		}
 	}
 

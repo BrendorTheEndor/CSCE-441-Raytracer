@@ -8,7 +8,12 @@
 /*
 	Questions
 	How to set color?
-
+	What is s in shape?
+	What is km in shape?
+	How do I get A, Li, N, Ri, E, and n?
+	What is P, and how do I calculate it (for record)?
+	How to get normal for record?
+	What is "ray", is it just a direction or is it a point and direction?
 */
 
 #define WINDOW_HEIGHT 800
