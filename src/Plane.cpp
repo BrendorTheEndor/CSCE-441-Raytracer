@@ -13,10 +13,16 @@ Plane::Plane(glm::vec3 ka, glm::vec3 kd, glm::vec3 ks, glm::vec3 km, float s, gl
 }
 
 float Plane::Intersect(glm::vec3 rayDirection, glm::vec3 rayOrigin, float t0, float t1) {
-	// TODO
-	return 0.0f;
+	float t = glm::dot((center - rayOrigin), normal) / glm::dot(rayDirection, normal);
+
+	if(t >= t0 && t <= t1) {
+		return t;
+	}
+	else {
+		return std::numeric_limits<float>::max();
+	}
 }
 
 glm::vec3 Plane::GetNormal() {
-	return glm::vec3(0.0f, 0.0f, 0.0f);
+	return normal;
 }

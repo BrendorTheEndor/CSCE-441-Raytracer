@@ -50,9 +50,9 @@ void Init() {
 	std::vector<Shape*> shapes;
 	std::vector<Light*> lights;
 
-	//Sphere* sphere1 = new Sphere(glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.2, 1.0, 0.2), glm::vec3(1.0, 1.0, 1.0),
-	//	glm::vec3(0.0, 0.0, 0.0), 100.0f, glm::vec3(-1.0, -0.7, 3.0), 0.3f);
-	//shapes.push_back(sphere1);
+	Sphere* sphere1 = new Sphere(glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.2, 1.0, 0.2), glm::vec3(1.0, 1.0, 1.0),
+		glm::vec3(0.0, 0.0, 0.0), 100.0f, glm::vec3(-1.0, -0.7, 3.0), 0.3f);
+	shapes.push_back(sphere1);
 
 	Sphere* sphere2 = new Sphere(glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.0, 0.0, 1.0), glm::vec3(1.0, 1.0, 1.0),
 		glm::vec3(0.0, 0.0, 0.0), 10.0f, glm::vec3(1.0, -0.5, 3.0), 0.5f);
@@ -66,13 +66,13 @@ void Init() {
 	//	glm::vec3(0.8, 0.8, 0.8), 0.0f, glm::vec3(1.0, 0.0, -1.0), 1.0f);
 	//shapes.push_back(sphere4);
 
-	//Plane* plane1 = new Plane(glm::vec3(0.1, 0.1, 0.1), glm::vec3(1.0, 1.0, 1.0), glm::vec3(0.0, 0.0, 0.0),
-	//	glm::vec3(0.0, 0.0, 0.0), 0.0f, glm::vec3(0.0, -1.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-	//shapes.push_back(plane1);
+	Plane* plane1 = new Plane(glm::vec3(0.1, 0.1, 0.1), glm::vec3(1.0, 1.0, 1.0), glm::vec3(0.0, 0.0, 0.0),
+		glm::vec3(0.0, 0.0, 0.0), 0.0f, glm::vec3(0.0, -1.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+	shapes.push_back(plane1);
 
-	//Plane* plane2 = new Plane(glm::vec3(0.1, 0.1, 0.1), glm::vec3(1.0, 1.0, 1.0), glm::vec3(0.0, 0.0, 0.0),
-	//	glm::vec3(0.0, 0.0, 0.0), 0.0f, glm::vec3(0.0, 0.0, -3.0), glm::vec3(0.0, 0.0, 1.0));
-	//shapes.push_back(plane2);
+	Plane* plane2 = new Plane(glm::vec3(0.1, 0.1, 0.1), glm::vec3(1.0, 1.0, 1.0), glm::vec3(0.0, 0.0, 0.0),
+		glm::vec3(0.0, 0.0, 0.0), 0.0f, glm::vec3(0.0, 0.0, -3.0), glm::vec3(0.0, 0.0, 1.0));
+	shapes.push_back(plane2);
 
 	Light* light1 = new Light(glm::vec3(0.0, 3.0, -2.0), glm::vec3(0.2, 0.2, 0.2));
 	lights.push_back(light1);

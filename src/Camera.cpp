@@ -21,30 +21,30 @@ Camera::Camera(int widthRes, int heightRes, glm::vec3 eye, glm::vec3 lookAt, glm
 glm::vec3 ComputeRayColor(glm::vec3 rayDirection, glm::vec3 rayOrigin, float t0, float t1, Scene* scene) {
 	Record* record = new Record();
 
-	//std::cout << "Called ComputeRayColor" << std::endl;
-
-	// I think this is done?
-	// FIXME Never hitting anything
 	if(scene->Hit(rayDirection, rayOrigin, t0, t1, record)) {
-
-		//std::cout << "Hit something" << std::endl;
-
-		//glm::vec3 color = glm::vec3(1.0f, 0.0f, 0.0f);
-
 		glm::vec3 color = record->ka;
-
 		glm::vec3 E = glm::normalize(rayOrigin - record->P); // Eye - P
 
 		for(int i = 0; i < scene->GetLights().size(); i++) {
 
-			glm::vec3 L = glm::normalize(scene->GetLights()[i]->GetPosition() - record->P);
-			glm::vec3 R = 2.0f * record->normal * (glm::dot(L, record->normal)) - L;
+			float epsilon = pow(10, -3);
 
-			//std::cout << glm::dot(L, R) << std::endl;
+			float tLight = sqrt(glm::dot(scene->GetLights()[i]->GetPosition()
+				- record->P, scene->GetLights()[i]->GetPosition() - record->P))
+				/ sqrt(glm::dot(rayDirection, rayDirection));
 
-			color += scene->GetLights()[i]->GetColor()
-				* ((record->kd * glm::max(0.0f, glm::dot(L, record->normal)))
-				+ (record->ks * pow(glm::max(0.0f, glm::dot(R, E)), record->s)));
+			glm::vec3 shadowRay = glm::normalize(scene->GetLights()[i]->GetPosition() - record->P);
+			Record dummyRecord;
+
+			if(!scene->Hit(shadowRay, record->P, epsilon, tLight, &dummyRecord)) {
+
+				glm::vec3 L = glm::normalize(scene->GetLights()[i]->GetPosition() - record->P);
+				glm::vec3 R = 2.0f * record->normal * (glm::dot(L, record->normal)) - L;
+
+				color += scene->GetLights()[i]->GetColor()
+					* ((record->kd * glm::max(0.0f, glm::dot(L, record->normal)))
+						+ (record->ks * pow(glm::max(0.0f, glm::dot(R, E)), record->s)));
+			}
 		}
 		delete record;
 		return color;
@@ -79,7 +79,7 @@ void Camera::TakePicture(Scene* scene) {
 			glm::vec3 colorAtPixel = ComputeRayColor(rayDirection, eye, 0, std::numeric_limits<float>::max(), scene);
 
 			//std::cout << "Red term" << colorAtPixel.r << std::endl;
-			
+
 			// assign this returned color to renderedImage
 			//std::cout << "colors: " << colorAtPixel[0] << " " << colorAtPixel[1] << " " << colorAtPixel[2] << std::endl;
 			// ALWAYS RETURNING BLACK
