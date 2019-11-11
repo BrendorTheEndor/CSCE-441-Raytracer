@@ -50,13 +50,13 @@ void Init() {
 	std::vector<Shape*> shapes;
 	std::vector<Light*> lights;
 
-	Sphere* sphere1 = new Sphere(glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.2, 1.0, 0.2), glm::vec3(1.0, 1.0, 1.0),
-		glm::vec3(0.0, 0.0, 0.0), 100.0f, glm::vec3(-1.0, -0.7, 3.0), 0.3f);
-	shapes.push_back(sphere1);
+	//Sphere* sphere1 = new Sphere(glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.2, 1.0, 0.2), glm::vec3(1.0, 1.0, 1.0),
+	//	glm::vec3(0.0, 0.0, 0.0), 100.0f, glm::vec3(-1.0, -0.7, 3.0), 0.3f);
+	//shapes.push_back(sphere1);
 
-	//Sphere* sphere2 = new Sphere(glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.0, 0.0, 1.0), glm::vec3(1.0, 1.0, 1.0),
-	//	glm::vec3(0.0, 0.0, 0.0), 10.0f, glm::vec3(1.0, -0.5, 3.0), 0.5f);
-	//shapes.push_back(sphere2);
+	Sphere* sphere2 = new Sphere(glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.0, 0.0, 1.0), glm::vec3(1.0, 1.0, 1.0),
+		glm::vec3(0.0, 0.0, 0.0), 10.0f, glm::vec3(1.0, -0.5, 3.0), 0.5f);
+	shapes.push_back(sphere2);
 
 	//Sphere* sphere3 = new Sphere(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0),
 	//	glm::vec3(1.0, 1.0, 1.0), 0.0f, glm::vec3(-1.0, 0.0, 0.0), 1.0f);
@@ -85,6 +85,8 @@ void Init() {
 	camera.TakePicture(&scene);
 	float* renderedImage = camera.GetRenderedImage();
 	memcpy(frameBuffer, renderedImage, sizeof(float) * WINDOW_HEIGHT * WINDOW_WIDTH * 3);
+
+	std::cout << "Picture taken" << std::endl;
 }
 
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <limits>
+#include <iostream>
 #include "Shape.h"
 #include "Light.h"
 #include "Sphere.h"
@@ -11,7 +12,7 @@ public:
 	Scene();
 	~Scene();
 	Scene(std::vector<Shape*> shapes, std::vector<Light*> lights);
-	bool Hit(glm::vec3 rayDirection, float t0, float t1, Record* record);
+	bool Hit(glm::vec3 rayDirection, glm::vec3 rayOrigin, float t0, float t1, Record* record);
 
 	std::vector<Light*> GetLights() { return lights; }
 

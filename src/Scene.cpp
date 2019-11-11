@@ -12,7 +12,8 @@ Scene::Scene(std::vector<Shape*> shapes, std::vector<Light*> lights) {
 	this->lights = lights;
 }
 
-bool Scene::Hit(glm::vec3 rayDirection, float t0, float t1, Record* record) {
+bool Scene::Hit(glm::vec3 rayDirection, glm::vec3 rayOrigin, float t0, float t1, Record* record) {
+	//std::cout << "Hit called" << std::endl;
 
 	bool hitSomething = false;
 
@@ -20,7 +21,8 @@ bool Scene::Hit(glm::vec3 rayDirection, float t0, float t1, Record* record) {
 	Shape* shapeWithMinT;
 
 	for(int i = 0; i < shapes.size(); i++) {
-		float t = shapes[i]->Intersect(rayDirection, t0, t1);
+		//std::cout << "checking shapes[" << i << "]" << std::endl;
+		float t = shapes[i]->Intersect(rayDirection, rayOrigin, t0, t1);
 		if(t < minT) {
 			hitSomething = true;
 			minT = t;
@@ -32,10 +34,15 @@ bool Scene::Hit(glm::vec3 rayDirection, float t0, float t1, Record* record) {
 		return false;
 	}
 
-	// TODO P and Normal
+	//std::cout << "Hit something" << std::endl;
+
 	record->ka = shapeWithMinT->GetKa();
 	record->kd = shapeWithMinT->GetKd();
 	record->ks = shapeWithMinT->GetKs();
 	record->km = shapeWithMinT->GetKm();
 	record->s = shapeWithMinT->GetS();
+	record->P = rayOrigin + (minT * rayDirection); // O + td
+	record->normal = shapeWithMinT->GetNormal();
+
+	return true;
 }
