@@ -19,6 +19,7 @@ float Sphere::Intersect(glm::vec3 rayDirection, glm::vec3 rayOrigin, float t0, f
 
 	float intersectionTerm = pow(b, 2) - (4 * a * c);
 
+	// If term is > 0, take the lowest of two "t" vals
 	if(intersectionTerm > 0) {
 
 		float tPlus = (-b + sqrt(intersectionTerm)) / (2 * a);
@@ -36,6 +37,7 @@ float Sphere::Intersect(glm::vec3 rayDirection, glm::vec3 rayOrigin, float t0, f
 			return std::numeric_limits<float>::max();
 		}
 	}
+	// If term = 0, only one "t" term so take that
 	else if(abs(intersectionTerm) <= FLT_EPSILON) {
 
 		float t = (-b + sqrt(intersectionTerm)) / (2 * a);
@@ -50,6 +52,7 @@ float Sphere::Intersect(glm::vec3 rayDirection, glm::vec3 rayOrigin, float t0, f
 			return std::numeric_limits<float>::max();
 		}
 	}
+	// If term < 0, no intersection
 	else if(intersectionTerm < 0) {
 		return std::numeric_limits<float>::max();
 	}

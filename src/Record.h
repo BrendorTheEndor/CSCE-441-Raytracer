@@ -1,6 +1,7 @@
 #pragma once
 #include "Shape.h"
 
+// Stores data of a shape that has been hit by a ray
 class Record {
 public:
 	glm::vec3 ka;

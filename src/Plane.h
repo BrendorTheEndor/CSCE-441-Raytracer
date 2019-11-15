@@ -12,6 +12,8 @@ public:
 	glm::vec3 GetNormal();
 
 private:
+	// Center of plane, also used as a point on plane
 	glm::vec3 center;
+	// Normal vector of the plane
 	glm::vec3 normal;
 };

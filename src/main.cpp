@@ -5,17 +5,6 @@
 #include "Camera.h"
 #include "Scene.h"
 
-/*
-	Questions
-	How to set color?
-	What is s in shape?
-	What is km in shape?
-	How do I get A, Li, N, Ri, E, and n?
-	What is P, and how do I calculate it (for record)?
-	How to get normal for record?
-	What is "ray", is it just a direction or is it a point and direction?
-*/
-
 #define WINDOW_HEIGHT 800
 #define WINDOW_WIDTH 1200
 
@@ -44,9 +33,11 @@ void Init() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	ClearFrameBuffer();
 
+	// Set up camera
 	Camera camera = Camera(WINDOW_WIDTH, WINDOW_HEIGHT, glm::vec3(0.0f, 0.0f, 7.0f), glm::vec3(0.0f, 0.0f, 0.0f),
 		glm::vec3(0.0f, 1.0f, 0.0f), 45.0f, 1.0f);
 
+	// Set up scene
 	std::vector<Shape*> shapes;
 	std::vector<Light*> lights;
 
@@ -58,13 +49,13 @@ void Init() {
 		glm::vec3(0.0, 0.0, 0.0), 10.0f, glm::vec3(1.0, -0.5, 3.0), 0.5f);
 	shapes.push_back(sphere2);
 
-	//Sphere* sphere3 = new Sphere(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0),
-	//	glm::vec3(1.0, 1.0, 1.0), 0.0f, glm::vec3(-1.0, 0.0, 0.0), 1.0f);
-	//shapes.push_back(sphere3);
+	Sphere* sphere3 = new Sphere(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0),
+		glm::vec3(1.0, 1.0, 1.0), 0.0f, glm::vec3(-1.0, 0.0, 0.0), 1.0f);
+	shapes.push_back(sphere3);
 
-	//Sphere* sphere4 = new Sphere(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0),
-	//	glm::vec3(0.8, 0.8, 0.8), 0.0f, glm::vec3(1.0, 0.0, -1.0), 1.0f);
-	//shapes.push_back(sphere4);
+	Sphere* sphere4 = new Sphere(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0),
+		glm::vec3(0.8, 0.8, 0.8), 0.0f, glm::vec3(1.0, 0.0, -1.0), 1.0f);
+	shapes.push_back(sphere4);
 
 	Plane* plane1 = new Plane(glm::vec3(0.1, 0.1, 0.1), glm::vec3(1.0, 1.0, 1.0), glm::vec3(0.0, 0.0, 0.0),
 		glm::vec3(0.0, 0.0, 0.0), 0.0f, glm::vec3(0.0, -1.0, 0.0), glm::vec3(0.0, 1.0, 0.0));

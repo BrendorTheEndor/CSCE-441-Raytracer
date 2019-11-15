@@ -13,7 +13,10 @@ public:
 	glm::vec3 GetNormal();
 
 private:
+	// Center of sphere
 	glm::vec3 position;
+	// The normal at the last point hit
 	glm::vec3 lastNormal;
+	// Radius of sphere
 	float radius;
 };
